@@ -11,20 +11,26 @@ public class Stack {
     }
 
     public void push(int value) {
-        // TODO: Implement it!
+        //RPUSH: append one or multiple elements to a list.
+        //LPUSH: prepend one or multiple elements to a list.
+        connection.rpush("firstStack", String.valueOf(value));
     }
 
     public int pop() {
-        // TODO: Implement it!
-        return -1;
+        if(connection.llen("firstStack") == 0){
+            throw new UnderflowException();
+        } else {
+            return Integer.parseInt(connection.rpop("firstStack"));
+        }
     }
 
     public boolean isEmpty() {
-        // TODO: Implement it!
+        if(connection.llen("firstStack") == 0){
+            return true;
+        }
         return false;
     }
 
-    public static class UnderflowException extends RuntimeException {
-    }
+    public static class UnderflowException extends RuntimeException {    }
 
 }

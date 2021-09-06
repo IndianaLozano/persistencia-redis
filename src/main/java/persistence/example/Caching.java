@@ -21,6 +21,7 @@ public class Caching {
     private static final int MAX_DELAY = 5000;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private final JedisPool jedisPool;
     private final ObjectMapper objectMapper;
     private final Random random;

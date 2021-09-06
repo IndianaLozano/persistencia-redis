@@ -28,8 +28,14 @@ public class App {
         try {
             jedisPool = buildPool();
             final var objectMapper = buildObjectMapper();
+
+            //To create random values:
             final var random = new Random();
+
+
             final var caching = new Caching(jedisPool, objectMapper, random);
+
+            //Pipelining is what Redis calls batch processing
             final var pipelining = new Pipelining(jedisPool);
             caching.execute();
             pipelining.execute();
